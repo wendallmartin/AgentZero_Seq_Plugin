@@ -1,0 +1,32 @@
+<html>
+<head>
+  <title>Seq Logs Settings</title>
+  <script type="module">
+    import { store } from "/components/plugins/plugin-settings-store.js";
+  </script>
+</head>
+<body>
+  <div x-data>
+    <div class="p-4 space-y-4">
+      <div>
+        <label class="block text-sm font-medium mb-1">Seq URL</label>
+        <input type="text" class="input" x-model="config.seq_url" placeholder="http://seq.local:5341" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">API Key</label>
+        <input type="password" class="input" x-model="config.api_key" placeholder="Seq API key" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">Default lookback minutes</label>
+        <input type="number" class="input" x-model="config.lookback_minutes" min="1" step="1" />
+      </div>
+
+      <p class="text-sm opacity-70">
+        This plugin fetches events from Seq using the configured base URL and API key.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

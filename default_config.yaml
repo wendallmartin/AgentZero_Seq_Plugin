@@ -1,0 +1,5 @@
+# Default public configuration for Seq Logs.
+# Configure these in Agent Zero Settings > External > Seq Logs.
+seq_url: ""
+api_key: ""
+lookback_minutes: 5

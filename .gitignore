@@ -1,0 +1,13 @@
+# Local/private Agent Zero plugin settings
+config.json
+
+# Python generated files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local development/runtime files
+.env
+.env.*
+*.log
+.DS_Store
