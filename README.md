@@ -66,36 +66,36 @@ Find recent errors:
 }
 ```
 
-Find events for an application:
+Find events for a generic service property:
 
 ```json
 {
-  "query": "[App Name] = 'MyService'",
+  "query": "Service = 'ExampleService'",
   "limit": 50
 }
 ```
 
-Find events for a caller number property:
+Find events for a request or correlation identifier:
 
 ```json
 {
-  "query": "CallerNumber = '15551234567'",
+  "query": "CorrelationId = 'example-correlation-id'",
   "limit": 50
 }
 ```
 
-Find events containing text:
+Find events containing generic text:
 
 ```json
 {
-  "query": "Contains(@Message, 'Caller hung up')",
+  "query": "Contains(@Message, 'timeout')",
   "limit": 50
 }
 ```
 
 ## Security and privacy
 
-Seq logs often contain sensitive production data, including identifiers, phone numbers, user IDs, stack traces, hostnames, and internal URLs.
+Seq logs often contain sensitive production data, including identifiers, user IDs, stack traces, hostnames, internal URLs, and other operational details.
 
 - Use a least-privilege Seq API key when possible.
 - Do not commit `config.json` or any API key.
