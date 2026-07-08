@@ -32,8 +32,12 @@ def fetch_seq_events(
 
     params: dict[str, Any] = {
         "count": max(1, min(int(limit), 500)),
-        "filter": query,
     }
+
+    normalized_query = (query or "").strip()
+    if normalized_query and normalized_query != "*":
+        params["filter"] = normalized_query
+
     if after:
         params["after"] = _to_iso(after)
     if before:
