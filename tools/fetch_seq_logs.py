@@ -27,7 +27,7 @@ def _coerce_int(value: Any, default: int = 50, minimum: int = 1, maximum: int = 
 
 def fetch_logs(
     agent=None,
-    query: str = "*",
+    query: str = "",
     limit: int = 50,
     after: Optional[str] = None,
     before: Optional[str] = None,
@@ -78,7 +78,7 @@ def fetch_logs(
 def run(
     agent=None,
     context=None,
-    query: str = "*",
+    query: str = "",
     limit: int = 50,
     after: Optional[str] = None,
     before: Optional[str] = None,
@@ -100,7 +100,7 @@ class FetchSeqLogs(Tool):
     async def execute(self, **kwargs: Any) -> Response:
         result = fetch_logs(
             agent=self.agent,
-            query=str(self.args.get("query") or "*"),
+            query=str(self.args.get("query") or ""),
             limit=self.args.get("limit") or 50,
             after=self.args.get("after"),
             before=self.args.get("before"),
