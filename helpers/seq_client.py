@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any, Optional
+from urllib.parse import urlparse, urlunparse
 
 import requests
 
@@ -19,6 +20,22 @@ def _to_iso(dt: datetime) -> str:
     return dt.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
 
 
+def _normalize_seq_base_url(base_url: str) -> str:
+    parsed = urlparse(base_url.strip())
+
+    if not parsed.scheme:
+        parsed = urlparse(f"https://{base_url.strip()}")
+
+    return urlunparse((
+        parsed.scheme,
+        parsed.netloc,
+        "",
+        "",
+        "",
+        "",
+    )).rstrip("/")
+
+
 def fetch_seq_events(
     base_url: str,
     api_key: str,
@@ -28,7 +45,7 @@ def fetch_seq_events(
     before: Optional[datetime] = None,
     timeout: int = 30,
 ) -> SeqQueryResult:
-    base_url = base_url.rstrip("/")
+    base_url = _normalize_seq_base_url(base_url)
 
     params: dict[str, Any] = {
         "count": max(1, min(int(limit), 500)),
